@@ -1,0 +1,45 @@
+<div class="backdrop" (click)="close.emit()">
+  <div
+    class="panel"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="displayName()"
+    (click)="$event.stopPropagation()"
+  >
+    <button class="close" type="button" aria-label="Cerrar" (click)="close.emit()">✕</button>
+    @if (detail(); as d) {
+      <span class="number">{{ displayNumber() }}</span>
+      <img class="art" [src]="spriteUrl()" [alt]="displayName()" />
+      <h2 class="name">{{ displayName() }}</h2>
+      <div class="types">
+        @for (t of d.types; track t.slot) {
+          <span class="type-badge" [style.backgroundColor]="typeColor(t.type.name)">
+            {{ t.type.name }}
+          </span>
+        }
+      </div>
+      <div class="facts">
+        <div class="fact">
+          <span class="fact-label">Altura</span>
+          <strong>{{ heightLabel() }}</strong>
+        </div>
+        <div class="fact">
+          <span class="fact-label">Peso</span>
+          <strong>{{ weightLabel() }}</strong>
+        </div>
+      </div>
+      <div class="stats">
+        <h3>Estadísticas base</h3>
+        @for (s of statBars(); track s.label) {
+          <div class="stat">
+            <span class="stat-label">{{ s.label }}</span>
+            <div class="bar"><div class="fill" [style.width.%]="s.percent"></div></div>
+            <span class="stat-value">{{ s.value }}</span>
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="loading">Cargando…</p>
+    }
+  </div>
+</div>

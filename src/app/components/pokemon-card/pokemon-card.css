@@ -1,0 +1,55 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.9rem 0.6rem 1rem;
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 12px;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.number {
+  align-self: flex-end;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #8a8a8a;
+}
+
+.card img {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+}
+
+.name {
+  margin: 0;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 1.3rem;
+}
+
+.type-badge {
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}

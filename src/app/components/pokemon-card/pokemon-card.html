@@ -1,0 +1,12 @@
+<article class="card">
+  <span class="number">{{ displayNumber() }}</span>
+  <img [src]="spriteUrl()" [alt]="displayName()" loading="lazy" />
+  <h3 class="name">{{ displayName() }}</h3>
+  <div class="types">
+    @for (t of detail()?.types ?? []; track t.slot) {
+      <span class="type-badge" [style.backgroundColor]="typeColor(t.type.name)">
+        {{ t.type.name }}
+      </span>
+    }
+  </div>
+</article>

@@ -1,0 +1,76 @@
+<header class="header">
+  <div class="brand">
+    <h1>Pokédex</h1>
+    <span class="count">{{ pokeapi.results().length }} pokémon</span>
+  </div>
+  <div class="filters">
+    <input
+      type="search"
+      placeholder="Buscar por nombre o número"
+      aria-label="Buscar por nombre o número"
+      (input)="onSearch($event)"
+    />
+    <select
+      aria-label="Filtrar por tipo"
+      [value]="pokeapi.filter().tipo ?? ''"
+      [disabled]="!pokeapi.listLoaded()"
+      (change)="onTipoChange($event)"
+    >
+      <option value="">Todos los tipos</option>
+      @for (t of pokeapi.types(); track t.name) {
+        <option [value]="t.name">{{ t.name }}</option>
+      }
+    </select>
+    @if (pokeapi.hasActiveFilters()) {
+      <button type="button" class="clear" (click)="clear()">Limpiar</button>
+    }
+  </div>
+</header>
+
+<main class="content">
+  @if (pokeapi.listLoading()) {
+    <p class="status">Cargando pokémon…</p>
+  } @else if (pokeapi.tipoLoading()) {
+    <p class="status">Filtrando por tipo…</p>
+  } @else if (pokeapi.pageItems().length === 0) {
+    <p class="status">No se encontraron pokémon</p>
+  } @else {
+    <div class="grid">
+      @for (item of pokeapi.pageItems(); track item.id) {
+        <app-pokemon-card
+          [item]="item"
+          role="button"
+          tabindex="0"
+          [attr.aria-label]="'Ver detalle de ' + item.name"
+          (click)="openDetail(item.id)"
+          (keydown.enter)="openDetail(item.id)"
+          (keydown.space)="$event.preventDefault(); openDetail(item.id)"
+        />
+      }
+    </div>
+  }
+</main>
+
+@if (pokeapi.totalPages() > 1) {
+  <nav class="pagination" aria-label="Paginación">
+    <button
+      type="button"
+      [disabled]="pokeapi.page() <= 1"
+      (click)="pokeapi.setPagina(pokeapi.page() - 1)"
+    >
+      ◀ Anterior
+    </button>
+    <span class="page-info">Página {{ pokeapi.page() }} de {{ pokeapi.totalPages() }}</span>
+    <button
+      type="button"
+      [disabled]="pokeapi.page() >= pokeapi.totalPages()"
+      (click)="pokeapi.setPagina(pokeapi.page() + 1)"
+    >
+      Siguiente ▶
+    </button>
+  </nav>
+}
+
+@if (selectedId(); as id) {
+  <app-pokemon-detail [pokemonId]="id" (close)="selectedId.set(null)" />
+}

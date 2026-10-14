@@ -1,0 +1,138 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.panel {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.5rem 1.25rem;
+  background: #fff;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 50%;
+  background: #f0f0f0;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.close:hover {
+  background: #e0e0e0;
+}
+
+.number {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #8a8a8a;
+}
+
+.art {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.type-badge {
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.facts {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.fact-label {
+  font-size: 0.75rem;
+  color: #8a8a8a;
+}
+
+.stats {
+  width: 100%;
+}
+
+.stats h3 {
+  margin: 0.5rem 0 0.6rem;
+  font-size: 0.95rem;
+}
+
+.stat {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr 2.2rem;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-size: 0.8rem;
+}
+
+.stat-label {
+  text-align: right;
+  color: #555;
+}
+
+.bar {
+  height: 0.5rem;
+  background: #ececec;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: #e3350d;
+  border-radius: 999px;
+}
+
+.stat-value {
+  font-weight: 600;
+}
+
+.loading {
+  margin: 2rem 0;
+  color: #666;
+}
